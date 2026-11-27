@@ -1,0 +1,115 @@
+================================================================================
+                    AI CHAT EXPORTER — INSTALLATION GUIDE
+================================================================================
+
+This guide explains how to install and use this extension in Google Chrome,
+Brave, Microsoft Edge, Opera, or any Chromium-based web browser.
+
+No technical skills required! It takes less than 1 minute.
+
+--------------------------------------------------------------------------------
+STEP 1: OPEN EXTENSIONS IN YOUR BROWSER
+--------------------------------------------------------------------------------
+Choose your browser and open the extensions page:
+
+• Google Chrome:
+  Type  chrome://extensions  in your address bar and press Enter.
+
+• Brave Browser:
+  Type  brave://extensions   in your address bar and press Enter.
+
+• Microsoft Edge:
+  Type  edge://extensions    in your address bar and press Enter.
+
+• Opera / Opera GX:
+  Type  opera://extensions   in your address bar and press Enter.
+
+(Alternatively: Click the puzzle piece icon (🧩) at the top-right of your
+ browser and select "Manage Extensions".)
+
+
+--------------------------------------------------------------------------------
+STEP 2: TURN ON "DEVELOPER MODE"
+--------------------------------------------------------------------------------
+Look at the top-right corner of the Extensions page.
+You will see a toggle switch labeled:
+
+    [ Developer mode ]  <--- CLICK TO TURN ON (Switch should turn blue)
+
+(In Microsoft Edge, this toggle is located on the left sidebar: "Developer mode")
+
+
+--------------------------------------------------------------------------------
+STEP 3: LOAD THE EXTENSION FOLDER
+--------------------------------------------------------------------------------
+1. Look at the top-left corner of the page.
+2. Click the button that says:
+
+    [ Load unpacked ]
+
+3. A folder selection window will pop up.
+4. Browse to and select THIS folder (the one containing manifest.json).
+   Example:
+   D:\Extension
+5. Click "Select Folder".
+
+The extension "AI Chat Exporter" will instantly appear in your list!
+
+
+--------------------------------------------------------------------------------
+STEP 4: PIN TO YOUR TOOLBAR (RECOMMENDED)
+--------------------------------------------------------------------------------
+To make the extension easily accessible anytime:
+
+1. Click the puzzle icon (🧩) in the top-right corner of your browser.
+2. Find "AI Chat Exporter" in the list.
+3. Click the pin icon (📌) next to it.
+4. The extension icon will now stay visible on your browser toolbar.
+
+
+--------------------------------------------------------------------------------
+STEP 5: HOW TO USE
+--------------------------------------------------------------------------------
+1. Open any supported AI chatbot conversation:
+   • Claude        (claude.ai)
+   • ChatGPT       (chatgpt.com)
+   • Google Gemini (gemini.google.com)
+   • xAI Grok      (grok.com or x.com)
+   • DeepSeek      (chat.deepseek.com)
+   • Meta AI       (meta.ai)
+   • Perplexity    (perplexity.ai)
+   • Copilot       (copilot.microsoft.com)
+
+2. Features you can use inside the chat:
+   • DRAGGABLE EXPORT BUTTON:
+     A floating purple "Export" button appears on the screen.
+     Click and drag it anywhere on your screen to place it wherever you want.
+     Click it to open an instant 1-click export menu.
+
+   • PER-RESPONSE EXPORT:
+     Under every AI response, click the small download icon to export just
+     that specific answer (PDF, Word, Markdown, HTML, TXT, JSON).
+
+   • LIMIT TRACKER & HANDOFF:
+     Below the chat input box, see your token usage and click
+     "Continue In..." to transfer the conversation to another AI bot with 1 click.
+
+   • EXTENSION POPUP:
+     Click the extension icon in your browser toolbar to export the full chat,
+     select formats, adjust settings, or customize export defaults.
+
+
+--------------------------------------------------------------------------------
+HOW TO UPDATE AFTER CODE CHANGES
+--------------------------------------------------------------------------------
+Whenever new files or updates are added to this folder:
+1. Go back to  chrome://extensions
+2. Find "AI Chat Exporter".
+3. Click the circular reload icon (🔄).
+4. Refresh your open AI chat tabs in your browser.
+
+
+================================================================================
+Done! Enjoy exporting your AI conversations cleanly and easily.
+================================================================================
+

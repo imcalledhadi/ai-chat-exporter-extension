@@ -1,0 +1,822 @@
+/* AI Chat Exporter — Content Script Styles */
+/* Floating Action Button + injected UI elements */
+
+#ace-fab {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 2147483647;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+#ace-fab * {
+  pointer-events: all;
+}
+
+.ace-fab-btn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 16px 10px 13px;
+  background: linear-gradient(135deg, #7c3aed, #06b6d4);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  box-shadow: 0 4px 24px rgba(124, 58, 237, 0.45), 0 2px 8px rgba(0,0,0,0.3);
+  transition: box-shadow 0.2s, background 0.2s, transform 0.2s;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+  backdrop-filter: blur(8px);
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.ace-fab-btn:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 8px 32px rgba(124, 58, 237, 0.6), 0 4px 12px rgba(0,0,0,0.4);
+  background: linear-gradient(135deg, #6d28d9, #0891b2);
+  cursor: pointer;
+}
+
+.ace-fab-btn:active {
+  cursor: pointer;
+}
+
+/* Dragging state */
+#ace-fab.ace-fab-dragging {
+  pointer-events: all !important;
+}
+
+#ace-fab.ace-fab-dragging .ace-fab-btn {
+  cursor: grabbing !important;
+  transform: scale(1.06) !important;
+  box-shadow: 0 14px 40px rgba(124, 58, 237, 0.7), 0 6px 18px rgba(0,0,0,0.5) !important;
+  transition: none !important;
+  opacity: 0.95;
+}
+
+#ace-fab.ace-fab-dragging .ace-fab-tooltip {
+  display: none !important;
+}
+
+.ace-fab-grip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 4px;
+  margin-right: 2px;
+  border-radius: 4px;
+  opacity: 0.7;
+  cursor: grab;
+  transition: opacity 0.2s, background 0.2s;
+  touch-action: none;
+}
+
+.ace-fab-btn:hover .ace-fab-grip {
+  opacity: 0.95;
+}
+
+.ace-fab-grip:hover {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.2);
+  cursor: grab;
+}
+
+.ace-fab-grip:active,
+#ace-fab.ace-fab-dragging .ace-fab-grip {
+  cursor: grabbing !important;
+}
+
+.ace-fab-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.ace-fab-label {
+  font-size: 13px;
+}
+
+.ace-fab-tooltip {
+  background: rgba(15, 15, 23, 0.92);
+  color: #e2e8f0;
+  font-size: 11px;
+  padding: 5px 10px;
+  border-radius: 6px;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.2s, transform 0.2s;
+  white-space: nowrap;
+  border: 1px solid rgba(124, 58, 237, 0.35);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.4);
+}
+
+#ace-fab:hover:not(.ace-fab-dragging) .ace-fab-tooltip {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Pulse animation on load */
+@keyframes ace-pulse {
+  0%   { box-shadow: 0 4px 24px rgba(124,58,237,0.45), 0 0 0 0 rgba(124,58,237,0.5); }
+  70%  { box-shadow: 0 4px 24px rgba(124,58,237,0.45), 0 0 0 12px rgba(124,58,237,0); }
+  100% { box-shadow: 0 4px 24px rgba(124,58,237,0.45), 0 0 0 0 rgba(124,58,237,0); }
+}
+
+.ace-fab-btn {
+  animation: ace-pulse 2s ease-out 1;
+}
+
+/* ─────────────────────────────────────────────
+   Per-Response Export Button
+   ───────────────────────────────────────────── */
+
+.ace-response-export-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 28px !important;
+  height: 28px !important;
+  padding: 4px !important;
+  margin: 0 2px !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 6px !important;
+  color: inherit !important;
+  opacity: 0.65 !important;
+  cursor: pointer !important;
+  transition: opacity 0.2s, background 0.2s, color 0.2s, transform 0.15s !important;
+  vertical-align: middle !important;
+  box-sizing: border-box !important;
+  font-family: inherit !important;
+  line-height: 1 !important;
+}
+
+.ace-response-export-btn svg {
+  width: 16px !important;
+  height: 16px !important;
+  stroke: currentColor !important;
+  fill: none !important;
+  display: block !important;
+  pointer-events: none !important;
+}
+
+.ace-response-export-btn:hover {
+  opacity: 1 !important;
+  color: #7c3aed !important;
+  background: rgba(124, 58, 237, 0.12) !important;
+  transform: translateY(-1px) !important;
+}
+
+.ace-response-export-btn:active {
+  transform: translateY(0) !important;
+}
+
+/* ─────────────────────────────────────────────
+   In-Page Full Export Modal
+   ───────────────────────────────────────────── */
+
+.ace-export-modal {
+  position: fixed !important;
+  z-index: 2147483647 !important;
+  width: 360px !important;
+  max-width: calc(100vw - 24px) !important;
+  max-height: calc(100vh - 40px) !important;
+  background: #141424 !important;
+  color: #e2e8f0 !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(124, 58, 237, 0.35) !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+  font-size: 12px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+  animation: aceDropIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  backdrop-filter: blur(16px) !important;
+  box-sizing: border-box !important;
+}
+
+.ace-export-modal * {
+  box-sizing: border-box !important;
+}
+
+.ace-modal-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 10px 14px !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  background: rgba(255, 255, 255, 0.02) !important;
+}
+
+.ace-modal-title-row {
+  display: flex !important;
+  align-items: center !important;
+  gap: 7px !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  color: #fff !important;
+}
+
+.ace-modal-badge {
+  font-size: 10px !important;
+  font-weight: 600 !important;
+  padding: 2px 7px !important;
+  border-radius: 99px !important;
+  background: rgba(124, 58, 237, 0.25) !important;
+  color: #c4b5fd !important;
+}
+
+.ace-modal-close-btn {
+  background: transparent !important;
+  border: none !important;
+  color: #94a3b8 !important;
+  font-size: 16px !important;
+  line-height: 1 !important;
+  cursor: pointer !important;
+  padding: 4px 6px !important;
+  border-radius: 6px !important;
+  transition: all 0.15s !important;
+}
+
+.ace-modal-close-btn:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: #fff !important;
+}
+
+.ace-modal-body {
+  padding: 12px 14px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+  overflow-y: auto !important;
+  max-height: calc(85vh - 120px) !important;
+}
+
+/* Load Full Chat Banner */
+.ace-modal-load-bar {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 8px !important;
+  padding: 8px 10px !important;
+  background: rgba(124, 58, 237, 0.12) !important;
+  border: 1px solid rgba(124, 58, 237, 0.25) !important;
+  border-radius: 8px !important;
+}
+
+.ace-modal-load-info {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  font-size: 11px !important;
+  color: #cbd5e1 !important;
+  flex: 1 !important;
+}
+
+.ace-modal-load-btn {
+  padding: 4px 10px !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  background: #7c3aed !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+  transition: background 0.15s !important;
+}
+
+.ace-modal-load-btn:hover {
+  background: #6d28d9 !important;
+}
+
+.ace-modal-load-btn:disabled {
+  opacity: 0.6 !important;
+  cursor: wait !important;
+}
+
+/* Scope Tabs (All vs Select) */
+.ace-modal-scope-row {
+  display: flex !important;
+  gap: 6px !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  padding: 3px !important;
+  border-radius: 8px !important;
+}
+
+.ace-scope-tab {
+  flex: 1 !important;
+  padding: 6px 8px !important;
+  font-size: 11.5px !important;
+  font-weight: 600 !important;
+  border: none !important;
+  border-radius: 6px !important;
+  background: transparent !important;
+  color: #94a3b8 !important;
+  cursor: pointer !important;
+  text-align: center !important;
+  transition: all 0.15s !important;
+}
+
+.ace-scope-tab.active {
+  background: #7c3aed !important;
+  color: #fff !important;
+  box-shadow: 0 2px 8px rgba(124, 58, 237, 0.35) !important;
+}
+
+/* Messages Checklist Panel */
+.ace-modal-msgs-panel {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 8px !important;
+  padding: 8px !important;
+  background: rgba(0, 0, 0, 0.25) !important;
+}
+
+.ace-modal-msgs-panel.ace-hidden {
+  display: none !important;
+}
+
+.ace-msgs-toolbar {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  font-size: 10.5px !important;
+  color: #94a3b8 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+  padding-bottom: 6px !important;
+}
+
+.ace-link-btn {
+  background: none !important;
+  border: none !important;
+  color: #a78bfa !important;
+  font-size: 10.5px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  padding: 0 !important;
+}
+
+.ace-link-btn:hover {
+  text-decoration: underline !important;
+  color: #c4b5fd !important;
+}
+
+.ace-msgs-filter {
+  margin-left: auto !important;
+  display: flex !important;
+  gap: 4px !important;
+}
+
+.ace-filter-pill {
+  padding: 2px 6px !important;
+  font-size: 10px !important;
+  font-weight: 600 !important;
+  border: none !important;
+  border-radius: 4px !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  color: #94a3b8 !important;
+  cursor: pointer !important;
+}
+
+.ace-filter-pill.active {
+  background: rgba(124, 58, 237, 0.35) !important;
+  color: #c4b5fd !important;
+}
+
+.ace-msgs-list {
+  max-height: 140px !important;
+  overflow-y: auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 4px !important;
+  padding-right: 4px !important;
+}
+
+.ace-msg-row {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 5px 8px !important;
+  border-radius: 6px !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(255, 255, 255, 0.04) !important;
+  cursor: pointer !important;
+  transition: all 0.12s !important;
+}
+
+.ace-msg-row:hover {
+  background: rgba(255, 255, 255, 0.07) !important;
+}
+
+.ace-msg-row.selected {
+  border-color: rgba(124, 58, 237, 0.45) !important;
+  background: rgba(124, 58, 237, 0.12) !important;
+}
+
+.ace-msg-checkbox {
+  width: 14px !important;
+  height: 14px !important;
+  border-radius: 3px !important;
+  border: 1.5px solid #64748b !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+}
+
+.ace-msg-row.selected .ace-msg-checkbox {
+  background: #7c3aed !important;
+  border-color: #7c3aed !important;
+}
+
+.ace-msg-row.selected .ace-msg-checkbox::after {
+  content: '✓' !important;
+  color: #fff !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+}
+
+.ace-msg-role-tag {
+  font-size: 9.5px !important;
+  font-weight: 700 !important;
+  padding: 1px 5px !important;
+  border-radius: 3px !important;
+  flex-shrink: 0 !important;
+}
+
+.ace-msg-role-tag.user {
+  background: rgba(59, 130, 246, 0.2) !important;
+  color: #60a5fa !important;
+}
+
+.ace-msg-role-tag.ai {
+  background: rgba(16, 185, 129, 0.2) !important;
+  color: #34d399 !important;
+}
+
+.ace-msg-snippet {
+  font-size: 11px !important;
+  color: #cbd5e1 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  flex: 1 !important;
+}
+
+/* Format Grid in Modal */
+.ace-modal-format-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 6px !important;
+}
+
+.ace-modal-fmt-btn {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 8px 4px !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+  color: #e2e8f0 !important;
+  gap: 4px !important;
+  transition: all 0.15s !important;
+}
+
+.ace-modal-fmt-btn:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.ace-modal-fmt-btn.selected {
+  background: rgba(124, 58, 237, 0.2) !important;
+  border-color: #7c3aed !important;
+  box-shadow: 0 0 10px rgba(124, 58, 237, 0.3) !important;
+}
+
+.ace-modal-fmt-name {
+  font-size: 11px !important;
+  font-weight: 600 !important;
+}
+
+/* Modal Export Action Button */
+.ace-modal-export-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 7px !important;
+  width: 100% !important;
+  padding: 11px !important;
+  background: linear-gradient(135deg, #7c3aed, #06b6d4) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 8px !important;
+  font-size: 12.5px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  box-shadow: 0 4px 18px rgba(124, 58, 237, 0.4) !important;
+  transition: all 0.2s !important;
+}
+
+.ace-modal-export-btn:hover {
+  box-shadow: 0 6px 24px rgba(124, 58, 237, 0.6) !important;
+  transform: translateY(-1px) !important;
+}
+
+.ace-modal-export-btn:disabled {
+  opacity: 0.5 !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* ─────────────────────────────────────────────
+   Export Dropdown Menu
+   ───────────────────────────────────────────── */
+
+.ace-export-dropdown {
+  position: fixed !important;
+  z-index: 2147483647 !important;
+  width: 200px !important;
+  background: #141424 !important;
+  color: #e2e8f0 !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 10px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(124, 58, 237, 0.25) !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+  font-size: 12px !important;
+  padding: 6px !important;
+  box-sizing: border-box !important;
+  animation: aceDropIn 0.18s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  backdrop-filter: blur(12px) !important;
+}
+
+@keyframes aceDropIn {
+  from { opacity: 0; transform: translateY(4px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.ace-dropdown-header {
+  font-size: 10.5px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+  color: #94a3b8 !important;
+  padding: 6px 8px 4px 8px !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  margin-bottom: 4px !important;
+}
+
+.ace-dropdown-items {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2px !important;
+}
+
+.ace-dropdown-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  width: 100% !important;
+  padding: 6px 8px !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 6px !important;
+  color: #e2e8f0 !important;
+  font-size: 12px !important;
+  font-family: inherit !important;
+  cursor: pointer !important;
+  text-align: left !important;
+  transition: background 0.15s, color 0.15s !important;
+  box-sizing: border-box !important;
+}
+
+.ace-dropdown-item:hover {
+  background: rgba(124, 58, 237, 0.16) !important;
+  color: #ffffff !important;
+}
+
+.ace-item-badge {
+  font-size: 9px !important;
+  font-weight: 700 !important;
+  padding: 2px 5px !important;
+  border-radius: 4px !important;
+  letter-spacing: 0.04em !important;
+  min-width: 28px !important;
+  text-align: center !important;
+  flex-shrink: 0 !important;
+}
+
+.ace-item-badge.pdf  { background: rgba(239, 68, 68, 0.22) !important; color: #f87171 !important; }
+.ace-item-badge.word { background: rgba(59, 130, 246, 0.22) !important; color: #60a5fa !important; }
+.ace-item-badge.md   { background: rgba(124, 58, 237, 0.25) !important; color: #c084fc !important; }
+.ace-item-badge.html { background: rgba(249, 115, 22, 0.22) !important; color: #fb923c !important; }
+.ace-item-badge.txt  { background: rgba(148, 163, 184, 0.22) !important; color: #cbd5e1 !important; }
+.ace-item-badge.json { background: rgba(245, 158, 11, 0.22) !important; color: #fbbf24 !important; }
+
+.ace-item-label {
+  flex: 1 !important;
+  font-weight: 500 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+/* ─────────────────────────────────────────────
+   Type Box Limit Line (Equal to length of Type Box)
+   ───────────────────────────────────────────── */
+
+.ace-input-limit-bar {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 4px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  margin-top: 6px !important;
+  margin-bottom: 6px !important;
+  padding: 0 4px !important;
+  box-sizing: border-box !important;
+  position: relative !important;
+  z-index: 10 !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+  user-select: none !important;
+  transition: width 0.15s ease !important;
+}
+
+.ace-limit-bar-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  font-size: 11px !important;
+  color: #94a3b8 !important;
+  line-height: 1.4 !important;
+}
+
+.ace-limit-bar-left {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+
+.ace-limit-dot {
+  width: 6px !important;
+  height: 6px !important;
+  border-radius: 50% !important;
+  background: #10b981 !important;
+  flex-shrink: 0 !important;
+  box-shadow: 0 0 6px #10b981 !important;
+  transition: background 0.3s, box-shadow 0.3s !important;
+}
+
+.ace-limit-percent-text strong {
+  color: #f1f5f9 !important;
+  font-weight: 700 !important;
+}
+
+.ace-limit-sep {
+  color: #64748b !important;
+}
+
+.ace-limit-tokens-text {
+  color: #64748b !important;
+  font-size: 10.5px !important;
+}
+
+.ace-limit-handoff-link {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  background: transparent !important;
+  border: 1px solid rgba(124, 58, 237, 0.4) !important;
+  border-radius: 99px !important;
+  color: #c084fc !important;
+  font-size: 10.5px !important;
+  font-weight: 600 !important;
+  padding: 2px 8px !important;
+  cursor: pointer !important;
+  transition: all 0.2s !important;
+  font-family: inherit !important;
+}
+
+.ace-limit-handoff-link:hover {
+  background: rgba(124, 58, 237, 0.2) !important;
+  color: #ffffff !important;
+  border-color: #7c3aed !important;
+}
+
+@keyframes aceLimitPulse {
+  0%   { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+  50%  { transform: scale(1.04); box-shadow: 0 0 8px rgba(239, 68, 68, 0.9); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+}
+
+.ace-limit-handoff-link.ace-pulse-attention {
+  background: rgba(239, 68, 68, 0.25) !important;
+  color: #fca5a5 !important;
+  border-color: rgba(239, 68, 68, 0.6) !important;
+  animation: aceLimitPulse 2s infinite ease-in-out !important;
+}
+
+.ace-limit-handoff-link.ace-pulse-attention:hover {
+  background: rgba(239, 68, 68, 0.4) !important;
+  color: #ffffff !important;
+}
+
+.ace-limit-bar-track {
+  width: 100% !important;
+  height: 3.5px !important;
+  background: rgba(255, 255, 255, 0.12) !important;
+  border-radius: 99px !important;
+  overflow: hidden !important;
+}
+
+.ace-limit-bar-fill {
+  height: 100% !important;
+  border-radius: 99px !important;
+  background: linear-gradient(90deg, #10b981, #06b6d4) !important;
+  transition: width 0.35s ease, background 0.35s ease !important;
+}
+
+/* ─────────────────────────────────────────────
+   Handoff Dropdown Menu
+   ───────────────────────────────────────────── */
+
+.ace-handoff-dropdown {
+  position: fixed !important;
+  z-index: 2147483647 !important;
+  width: 210px !important;
+  background: #141424 !important;
+  color: #e2e8f0 !important;
+  border: 1px solid rgba(124, 58, 237, 0.3) !important;
+  border-radius: 10px !important;
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.6) !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+  font-size: 12px !important;
+  padding: 6px !important;
+  box-sizing: border-box !important;
+  animation: aceDropIn 0.18s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  backdrop-filter: blur(12px) !important;
+}
+
+/* ─────────────────────────────────────────────
+   Handoff Notification Banner (Target AI Tab)
+   ───────────────────────────────────────────── */
+
+.ace-handoff-banner {
+  position: fixed !important;
+  top: 18px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  z-index: 2147483647 !important;
+  background: linear-gradient(135deg, #1e1b4b, #0f172a) !important;
+  border: 1.5px solid #7c3aed !important;
+  border-radius: 12px !important;
+  padding: 10px 18px !important;
+  color: #ffffff !important;
+  font-size: 12.5px !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.6), 0 0 16px rgba(124, 58, 237, 0.4) !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  animation: aceBannerSlide 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+@keyframes aceBannerSlide {
+  from { opacity: 0; transform: translate(-50%, -12px); }
+  to   { opacity: 1; transform: translate(-50%, 0); }
+}
+
+.ace-banner-close {
+  background: none !important;
+  border: none !important;
+  color: #94a3b8 !important;
+  font-size: 16px !important;
+  cursor: pointer !important;
+  padding: 0 4px !important;
+  line-height: 1 !important;
+}
+
+.ace-banner-close:hover {
+  color: #ffffff !important;
+}
