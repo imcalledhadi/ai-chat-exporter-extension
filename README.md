@@ -1,6 +1,6 @@
 # 🤖 AI Chat Exporter (`v1.0.0` · Manifest V3)
 
-Export conversations from **Claude, ChatGPT, Gemini, Grok, Meta AI, DeepSeek** — to **PDF, Word, Markdown, HTML, TXT, JSON**.
+Export conversations from **Claude, ChatGPT, Gemini, Grok, Meta AI, DeepSeek** - to **PDF, Word, Markdown, HTML, TXT, JSON**.
 
 - **Extension Spec:** Chrome / Edge **Manifest V3** (`manifest_version: 3`, `v1.0.0`)
 
@@ -43,14 +43,14 @@ Export conversations from **Claude, ChatGPT, Gemini, Grok, Meta AI, DeepSeek** �
 ### Method 1: Floating Button
 1. Open any supported AI chat page
 2. A purple **"Export"** button appears in the bottom-right corner
-3. Click it — the extension popup opens
+3. Click it - the extension popup opens
 
 ### Method 2: Toolbar Icon
 1. Click the extension icon in your browser toolbar
 2. The popup auto-detects the platform and parses all messages
-3. **Export tab** — choose format and export
-4. **Messages tab** — select specific messages to include
-5. **Options tab** — configure PDF size, theme, timestamps
+3. **Export tab** - choose format and export
+4. **Messages tab** - select specific messages to include
+5. **Options tab** - configure PDF size, theme, timestamps
 
 ---
 
