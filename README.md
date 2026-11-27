@@ -1,6 +1,8 @@
-# 🤖 AI Chat Exporter
+# 🤖 AI Chat Exporter (`v1.0.0` · Manifest V3)
 
 Export conversations from **Claude, ChatGPT, Gemini, Grok, Meta AI, DeepSeek** — to **PDF, Word, Markdown, HTML, TXT, JSON**.
+
+- **Extension Spec:** Chrome / Edge **Manifest V3** (`manifest_version: 3`, `v1.0.0`)
 
 ---
 
