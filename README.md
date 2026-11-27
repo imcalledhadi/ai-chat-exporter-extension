@@ -102,4 +102,10 @@ Extension/
 
 ---
 
+## 👤 Author
+
+- **Muhammad Abdul Hadi** - [Portfolio](https://abdulhadi-portfolio.web.app/) · [GitHub](https://github.com/imcalledhadi) · [LinkedIn](https://www.linkedin.com/in/imcalledhadi/)
+
+---
+
 MIT License
