@@ -4,6 +4,12 @@ Export conversations from **Claude, ChatGPT, Gemini, Grok, Meta AI, DeepSeek** -
 
 - **Extension Spec:** Chrome / Edge **Manifest V3** (`manifest_version: 3`, `v1.0.0`)
 
+## Screenshots
+
+| Popup & Export | Message Selection | Options |
+| :---: | :---: | :---: |
+| ![Export](screenshots/Screenshot%202026-11-28%20194053.png) | ![Messages](screenshots/Screenshot%202026-11-28%20194111.png) | ![Options](screenshots/Screenshot%202026-11-28%20194128.png) |
+
 ---
 
 ## Features
